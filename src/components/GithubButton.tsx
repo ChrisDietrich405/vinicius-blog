@@ -1,3 +1,7 @@
+import { useSession, signIn } from "next-auth/react";
+
 export const GithubButton = () => {
-  return <button>Github</button>;
+  const { data: session } = useSession();
+  console.log(session);
+  return <button onClick={() => signIn("github")}>Github</button>;
 };
