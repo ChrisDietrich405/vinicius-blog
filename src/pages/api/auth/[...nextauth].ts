@@ -1,7 +1,7 @@
-process.env.VARIABLE_NAME;
-
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
+import { fauna } from "services/fauna";
+import { query as q } from "faunadb";
 
 export default NextAuth({
   providers: [
@@ -15,4 +15,10 @@ export default NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user }) {
+      fauna.query();
+      return true;
+    },
+  },
 });

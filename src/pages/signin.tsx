@@ -6,7 +6,6 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   const { data: session } = useSession();
-  console.log(session);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
