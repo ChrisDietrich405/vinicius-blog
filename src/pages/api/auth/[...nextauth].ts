@@ -17,8 +17,15 @@ export default NextAuth({
   ],
   callbacks: {
     async signIn({ user }) {
-      fauna.query();
-      return true;
+      const { email } = user;
+      console.log(user);
+      try {
+        await fauna.query(q.Create(q.Collection("users"), { data: email }));
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
     },
   },
 });
