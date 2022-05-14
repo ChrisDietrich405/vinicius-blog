@@ -20,7 +20,7 @@ export default NextAuth({
       const { email } = user;
       console.log(user);
       try {
-        await fauna.query(q.Create(q.Collection("users"), { data: email }));
+        await fauna.query(q.Create(q.Collection("users"), { data: { email } }));
         return true;
       } catch (error) {
         console.log(error);

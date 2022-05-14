@@ -1,15 +1,23 @@
 import { GithubButton } from "components/GithubButton";
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
   };
+
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [session]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -25,7 +33,6 @@ const SignIn = () => {
         placeholder="password"
       /> */}
       <button type="submit">Submit</button>
-      {session && <h1>{session.user?.name}</h1>}
     </form>
   );
 };
