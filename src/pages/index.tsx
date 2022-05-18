@@ -24,13 +24,13 @@ const Home = () => {
         <div className={styles.user_container}>
           <div className={styles.image_container}>
             <img
-              src={session!.user?.image as string}
-              alt={session!.user?.name as string}
+              src={session?.user?.image as string}
+              alt={session?.user?.name as string}
             />
           </div>
           <div className={styles.userInfo_container}>
-            <p>{session!.user?.name}</p>
-            <p>{session!.user?.email}</p>
+            <p>{session?.user?.name}</p>
+            <p>{session?.user?.email}</p>
           </div>
         </div>
       </section>
