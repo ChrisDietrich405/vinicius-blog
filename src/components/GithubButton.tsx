@@ -8,5 +8,5 @@ export const GithubButton = () => {
     return <></>;
   }
 
-  return <button onClick={() => signIn("github")}>Github</button>;
+  return <button onClick={() => signIn("github")}>Sign up using Github</button>;
 };

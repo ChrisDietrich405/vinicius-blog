@@ -20,7 +20,25 @@ export default NextAuth({
       const { email } = user;
       console.log(user);
       try {
-        await fauna.query(q.Create(q.Collection("users"), { data: { email } }));
+        // await fauna.query(q.Create(q.Collection("users"), { data: { email } }));
+        //registering new user for our blog app  (they are already github account holders)
+        await fauna.query(
+          q.If(
+            q.Not(
+              q.Exists(
+                q.Match(
+                  // "where". Always receive an Index
+                  q.Index("user_by_email"),
+                  q.Casefold(email!) // "toLowerCase"
+                )
+              )
+            ) /*true? (user doesn't exists)**/,
+            q.Create(q.Collection("users"), {
+              data: { email },
+            }) /*false (user exists)?*/,
+            q.Get(q.Match(q.Index("user_by_email"), q.Casefold(email!)))
+          )
+        );
         return true;
       } catch (error) {
         console.log(error);

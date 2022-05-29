@@ -27,11 +27,6 @@ const SignIn = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="email"
       />
-      {/* <input
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="password"
-      /> */}
       <button type="submit">Submit</button>
     </form>
   );
