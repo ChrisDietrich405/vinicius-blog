@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+
   const { data: session } = useSession();
   const router = useRouter();
 
